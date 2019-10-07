@@ -7,7 +7,7 @@ int main(){
 	size_t height = 6;
 	Terrain terrain(width, height);
 
-	Miniature player;
+	Miniature player(Size::Gargantuan);
 	terrain.put_mini(player, 0, 0);
 
 	initscr();

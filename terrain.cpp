@@ -21,27 +21,35 @@ Tile *Terrain::get_tile(int x, int y) {
 std::vector<Miniature*> Terrain::get_minies(int x, int y) {
 	std::vector<Miniature*> minies;
 	for (Miniature *mini: miniatures) {
+		bool contains = false;
 		Coordinates coords = mini->get_coords();
-		if (coords.x == x && coords.y == y) {
+		switch (mini->get_size()) {
+		case Size::Tiny:
+		case Size::Small:
+		case Size::Medium:
+			contains = (coords.x == x && coords.y == y);
+			break;
+		case Size::Large:
+			contains = ((coords.x == x || coords.x == x - 1) && (coords.y == y || coords.y == y - 1));
+			break;
+		case Size::Gargantuan:
+			contains = (coords.x <= x && coords.x >= x - 2 && coords.y <= y && coords.y >= y - 2);
+			break;
+		}
+		if (contains) {
 			minies.push_back(mini);
 		}
 	}
 	return minies;
 }
 
-void Terrain::put_mini(Miniature &mini, int x, int y) {
-	switch (mini.get_size()) {
-		case Size::Tiny:
-		case Size::Small:
-		case Size::Medium:
-			mini.set_coords(x, y);
-			miniatures.push_back(&mini);
-			break;
-		case Size::Large:
-			break;
-		case Size::Gargantuan:
-			break;
+bool Terrain::put_mini(Miniature &mini, int x, int y) {
+	if (fits_mini(mini, x, y)) {
+		mini.set_coords(x, y);
+		miniatures.push_back(&mini);
+		return true;
 	}
+	return false;
 }
 
 void Terrain::take_mini(Miniature &mini) {
@@ -56,7 +64,7 @@ Coordinates Terrain::find_mini(Miniature &mini) {
 	return mini.get_coords();
 }
 
-void Terrain::move_mini(Miniature &mini, Direction dir) {
+bool Terrain::move_mini(Miniature &mini, Direction dir) {
 	Tile *tile;
 	Coordinates coords = mini.get_coords();
 	switch (dir) {
@@ -73,7 +81,35 @@ void Terrain::move_mini(Miniature &mini, Direction dir) {
 			tile = get_tile(coords.x + 1, coords.y);
 			break;
 	}
-	if (tile != nullptr && !tile->is_obstacle()) {
+	if (tile != nullptr && fits_mini(mini, tile->get_x(), tile->get_y())) {
 		mini.set_coords(tile->get_x(), tile->get_y());
+		return true;
 	}
+	return false;
+}
+
+bool Terrain::fits_mini(Miniature &mini, int target_x, int target_y) {
+	int tiles_size;
+	switch (mini.get_size()) {
+	case Size::Tiny:
+	case Size::Small:
+	case Size::Medium:
+		tiles_size = 1;
+		break;
+	case Size::Large:
+		tiles_size = 2;
+		break;
+	case Size::Gargantuan:
+		tiles_size = 3;
+		break;
+	}
+	for (int x = target_x; x < target_x + tiles_size; x++) {
+		for (int y = target_y; y < target_y + tiles_size; y++) {
+			Tile *tile = get_tile(x, y);
+			if (tile == nullptr || tile->is_obstacle()) {
+				return false;
+			}
+		}
+	}
+	return true;
 }
