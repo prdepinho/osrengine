@@ -59,7 +59,7 @@ private:
 
 class Terrain {
 public:
-	Terrain(size_t width, size_t height);
+	Terrain(size_t width=0, size_t height=0);
 	~Terrain(){}
 	Tile *get_tile(int x, int y);
 
