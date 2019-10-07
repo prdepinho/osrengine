@@ -1,4 +1,6 @@
+#include <math.h>
 #include "terrain.h"
+#include "log.h"
 
 Terrain::Terrain(size_t width=0, size_t height=0)
 	: width(width), height(height) 
@@ -32,8 +34,11 @@ std::vector<Miniature*> Terrain::get_minies(int x, int y) {
 		case Size::Large:
 			contains = ((coords.x == x || coords.x == x - 1) && (coords.y == y || coords.y == y - 1));
 			break;
-		case Size::Gargantuan:
+		case Size::Huge:
 			contains = (coords.x <= x && coords.x >= x - 2 && coords.y <= y && coords.y >= y - 2);
+			break;
+		case Size::Gargantuan:
+			contains = (coords.x <= x && coords.x >= x - 3 && coords.y <= y && coords.y >= y - 3);
 			break;
 		}
 		if (contains) {
@@ -99,17 +104,32 @@ bool Terrain::fits_mini(Miniature &mini, int target_x, int target_y) {
 	case Size::Large:
 		tiles_size = 2;
 		break;
-	case Size::Gargantuan:
+	case Size::Huge:
 		tiles_size = 3;
 		break;
+	case Size::Gargantuan:
+		tiles_size = 4;
+		break;
 	}
+	// for all tiles that the mini shall occupy
 	for (int x = target_x; x < target_x + tiles_size; x++) {
 		for (int y = target_y; y < target_y + tiles_size; y++) {
+
 			Tile *tile = get_tile(x, y);
-			if (tile == nullptr || tile->is_obstacle()) {
-				return false;
+			bool fits = true;
+			fits = fits && !(tile == nullptr || tile->is_obstacle());
+			for (Miniature *put_mini: get_minies(x, y)) {
+				if (put_mini != &mini) {
+					fits = fits && std::abs(((int)put_mini->get_size() - (int)mini.get_size())) >= 2;
+					log("(%s) %d - %d = %d", (fits ? "fit" : "nope"), (int)put_mini->get_size(), (int)mini.get_size(), std::abs(((int)put_mini->get_size() - (int)mini.get_size())));
+				}
+				else {
+					log("same");
+				}
 			}
+			if (fits)
+				return true;
 		}
 	}
-	return true;
+	return false;
 }

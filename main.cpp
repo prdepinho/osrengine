@@ -3,12 +3,31 @@
 #include <ncurses.h>
 
 int main(){
-	size_t width = 8;
-	size_t height = 6;
+	size_t width = 20;
+	size_t height = 10;
 	Terrain terrain(width, height);
 
 	Miniature player(Size::Gargantuan);
-	terrain.put_mini(player, 0, 0);
+	terrain.put_mini(player, 0, 6);
+
+
+	Miniature bee(Size::Tiny);
+	terrain.put_mini(bee, 9, 3);
+
+	Miniature chair(Size::Small);
+	terrain.put_mini(chair, 5, 3);
+
+	Miniature dummy(Size::Medium);
+	terrain.put_mini(dummy, 7, 3);
+
+	Miniature bolder(Size::Large);
+	terrain.put_mini(bolder, 2, 2);
+
+	Miniature house(Size::Huge);
+	terrain.put_mini(house, 5, 5);
+
+	Miniature collosus(Size::Gargantuan);
+	terrain.put_mini(collosus, 9, 5);
 
 	initscr();
 	raw();
@@ -39,7 +58,7 @@ int main(){
 							c = 'O';
 						}
 					}
-					mvaddch(y, x*2, c | COLOR_PAIR(WHITE_BLACK));
+					mvaddch(y + 2, x * 2 + 2, c | COLOR_PAIR(WHITE_BLACK));
 				}
 			}
 			refresh();
