@@ -26,20 +26,37 @@ struct Coordinates {
 	int y;
 };
 
+struct CharAttr {
+	int abl_str;
+	int abl_dex;
+	int abl_con;
+	int abl_int;
+	int abl_wis;
+	int abl_cha;
+	int max_hp;
+	int cur_hp;
+	int speed;
+	int prof_bonus;
+};
+
 class Miniature {
 public:
-	Miniature(Size size=Size::Medium) : size(size) {}
-	~Miniature(){}
+	Miniature(Size size=Size::Medium, CharAttr attr={}) : size(size), attr(attr) {}
+	~Miniature() {}
 	std::vector<Tile*> get_tiles() { return tiles; }
 	void set_tiles(std::vector<Tile*> tiles) { this->tiles = tiles; }
 	Size get_size() const { return size; }
 	Coordinates get_coords() const { return Coordinates{x, y}; }
 	void set_coords(int x, int y) { this->x = x; this->y = y; }
+	int get_x() const { return x; }
+	int get_y() const { return y; }
+	CharAttr get_attr() const { return attr; }
 private:
 	Size size;
 	std::vector<Tile*> tiles;
 	int x;
 	int y;
+	CharAttr attr;
 };
 
 
