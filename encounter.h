@@ -1,6 +1,12 @@
 #pragma once
 
 #include "terrain.h"
+#include <vector>
+
+struct Initiative {
+	Miniature *mini;
+	int initiative;
+};
 
 class Encounter {
 public:
@@ -9,5 +15,6 @@ public:
 	void roll_initiative();
 	Miniature *next_mini();
 private:
+	std::vector<Initiative> initiative_order;
 	Terrain *terrain;
 };

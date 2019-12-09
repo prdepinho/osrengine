@@ -93,9 +93,20 @@ bool Terrain::move_mini(Miniature &mini, Direction dir) {
 	return false;
 }
 
+bool Terrain::move_mini(Miniature &mini, int x, int y) {
+	Tile *tile = get_tile(x, y);
+	if (tile != nullptr && fits_mini(mini, x, y)) {
+		mini.set_coords(x, y);
+		return true;
+	}
+	return false;
+}
+
 bool Terrain::fits_mini(Miniature &mini, int target_x, int target_y) {
 	int tiles_size;
 	switch (mini.get_size()) {
+	case Size::None:
+		return get_tile(target_x, target_y) != nullptr;
 	case Size::Tiny:
 	case Size::Small:
 	case Size::Medium:

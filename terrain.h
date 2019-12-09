@@ -6,6 +6,7 @@
 class Tile;
 
 enum class Size {
+	None = -1,
 	Tiny = 0,
 	Small = 1,
 	Medium = 2,
@@ -37,6 +38,7 @@ struct CharAttr {
 	int cur_hp;
 	int speed;
 	int prof_bonus;
+	int initiative;
 };
 
 class Miniature {
@@ -81,10 +83,12 @@ public:
 	Tile *get_tile(int x, int y);
 
 	std::vector<Miniature*> get_minies(int x, int y);
+	std::vector<Miniature*> get_minies() { return miniatures; }
 	bool put_mini(Miniature &mini, int x, int y);
 	void take_mini(Miniature &mini);
 	Coordinates find_mini(Miniature &mini);
 	bool move_mini(Miniature &mini, Direction dir);
+	bool move_mini(Miniature &mini, int x, int y);
 	bool fits_mini(Miniature &mini, int x, int y);
 private:
 	size_t width;
