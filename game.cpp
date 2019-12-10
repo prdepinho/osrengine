@@ -94,3 +94,14 @@ void Game::reset_cursor() {
 	cursor.x = player.get_x();
 	cursor.y = player.get_y();
 }
+
+void Game::set_action(Action *action) {
+	if (chosen_action)
+		delete chosen_action;
+	chosen_action = action;
+}
+
+void Game::act() {
+	if (chosen_action)
+		chosen_action->effect(terrain, player, cursor);
+}

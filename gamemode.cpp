@@ -1,10 +1,16 @@
 #include "gamemode.h"
 #include "game.h"
+#include "action.h"
 
 void GameMode::input(int ch) {
 	switch (ch) {
 	case 'q':
 		game->stop();
+		break;
+	case 't':
+		Log::write("Target");
+		game->set_action(new EchoAction());
+		game->set_mode(new SelectTileMode(game));
 		break;
 	case '0':
 		Log::write("Game Mode");
@@ -98,6 +104,8 @@ void SelectTileMode::input(int ch) {
 		case '\r':
 		case '\n':
 			Log::write(std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
+			game->act();
+			game->set_mode(new FreeMoveMode(game));
 			break;
 	}
 }

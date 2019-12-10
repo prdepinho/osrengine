@@ -6,6 +6,7 @@
 #include "encounter.h"
 #include "gamemode.h"
 #include "log.h"
+#include "action.h"
 
 const int WHITE_BLACK = 1;
 const int BLACK_WHITE = 2;
@@ -26,6 +27,8 @@ public:
 	void move_cursor(Direction dir);
 	void reset_cursor();
 	void select_tile();
+	void set_action(Action *action);
+	void act();
 	Terrain terrain;
 	Miniature player;
 	Coordinates cursor;
@@ -38,5 +41,6 @@ private:
 	GameMode *next_mode = nullptr;
 	void switch_mode();
 	Coordinates chosen;
+	Action *chosen_action = nullptr;
 };
 
