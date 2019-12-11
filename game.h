@@ -7,6 +7,7 @@
 #include "gamemode.h"
 #include "log.h"
 #include "action.h"
+#include "astar.h"
 
 const int WHITE_BLACK = 1;
 const int BLACK_WHITE = 2;
@@ -15,6 +16,19 @@ const size_t screen_width = 80;
 const size_t screen_height = 24;
 const size_t width = 20;
 const size_t height = 10;
+
+class AStarMap : public AStar::Matrix {
+public:
+	AStarMap(Terrain *terrain=nullptr) : terrain(terrain) {}
+	void set_mover(Miniature &miniature) { mover = &miniature; }
+	virtual float get(int x, int y) { return (terrain->fits_mini(*mover, x, y) ? .0f : 1.f); }
+	virtual size_t get_width() const { return terrain->get_width(); }
+	virtual size_t get_height() const { return terrain->get_height(); }
+private:
+	Terrain *terrain;
+	Miniature *mover;
+};
+
 
 class Game {
 public:
@@ -42,5 +56,6 @@ private:
 	void switch_mode();
 	Coordinates chosen;
 	Action *chosen_action = nullptr;
+	AStarMap astar_map;
 };
 

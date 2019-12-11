@@ -19,11 +19,9 @@ namespace AStar {
 #endif
 
 	struct Matrix {
-		Matrix(size_t width=0, size_t heigth=0) : width(width), height(height), matrix(std::vector<float>(width*height)) {}
-		float &operator[](size_t index) { return matrix[index]; }
-		std::vector<float> matrix;
-		size_t width;
-		size_t height;
+		virtual float get(int x, int y) = 0;
+		virtual size_t get_width() const = 0;
+		virtual size_t get_height() const = 0;
 	};
 
 	enum class Direction {

@@ -7,10 +7,12 @@ std::stack<AStar::Direction> AStar::search(
 	   	unsigned int limit)
 {
 	// consider the destiny as not obstacle for path-finding purposes.
+	size_t matrix_width = matrix.get_width();
+	size_t matrix_height = matrix.get_height();
 	bool obstacle_dst = false;
-	if (matrix[end.x + end.y * matrix.width] == 1.f) {
+	if (matrix.get(end.x, end.y) == 1.f) {
 		obstacle_dst = true;
-		matrix[end.x + end.y * matrix.width] = 0.f;
+		matrix.get(end.x, end.y) = 0.f;
 	}
 
 	std::map<AStar::Direction, std::tuple<int, int>> direction_mods = {
@@ -24,16 +26,16 @@ std::stack<AStar::Direction> AStar::search(
 		AStar::Direction::UP, AStar::Direction::DOWN, AStar::Direction::RIGHT, AStar::Direction::LEFT
 	};
 
-	std::vector<Node > search_grid(matrix.width * matrix.height);
-	for (int x = 0; x < matrix.width; ++x) {
-		for (int y = 0; y < matrix.height; ++y) {
-			search_grid[y * matrix.width + x] = Node(AStar::Vector2i(x, y), nullptr);
+	std::vector<Node > search_grid(matrix_width * matrix_height);
+	for (int x = 0; x < matrix_width; ++x) {
+		for (int y = 0; y < matrix_height; ++y) {
+			search_grid[y * matrix_width + x] = Node(AStar::Vector2i(x, y), nullptr);
 		}
 	}
-	search_grid[start.y * matrix.width + start.x] = Node(start, nullptr, 0.0f, AStar::distance(start, end));
+	search_grid[start.y * matrix_width + start.x] = Node(start, nullptr, 0.0f, AStar::distance(start, end));
 
 	std::priority_queue < Node*, std::vector<Node*>, NodeComparison > search_queue;
-	search_queue.push(&search_grid[start.y * matrix.width + start.x]);
+	search_queue.push(&search_grid[start.y * matrix_width + start.x]);
 
 	Node *dst_node = nullptr;
 	while (FAST_A_STAR_LOOP search_queue.size() >= 1) {
@@ -46,9 +48,9 @@ std::stack<AStar::Direction> AStar::search(
 		for (AStar::Direction &direction : directions) {
 			int x = current->coords.x + std::get<0>(direction_mods[direction]);
 			int y = current->coords.y + std::get<1>(direction_mods[direction]);
-			if (in_bounds(matrix, Vector2i(x, y)) && !matrix[x + y * matrix.width] == 1.f) {
+			if (in_bounds(matrix, Vector2i(x, y)) && !matrix.get(x, y) == 1.f) {
 				AStar::Vector2i neighbor(x, y);
-				Node *neighbor_node = &search_grid[neighbor.y * matrix.width + neighbor.x];
+				Node *neighbor_node = &search_grid[neighbor.y * matrix_width + neighbor.x];
 
 				if (!neighbor_node->visited && neighbor_node->local > current->local + 1) {
 					neighbor_node->local = current->local + 1;
@@ -74,7 +76,7 @@ std::stack<AStar::Direction> AStar::search(
 		// remove destiny from path if it is an obstacle.
 		if (obstacle_dst) {
 			dst_node = dst_node->parent;
-			matrix[end.x + end.y * matrix.width] = 1.f;
+			matrix.get(end.x, end.y) = 1.f;
 		}
 		Node *a_star_node = dst_node;
 		do {
@@ -92,6 +94,6 @@ inline float AStar::distance(AStar::Vector2i na, AStar::Vector2i nb) {
 }
 
 inline bool AStar::in_bounds(AStar::Matrix &matrix, AStar::Vector2i coords) {
-	return (coords.x >= 0 && coords.y < matrix.width && coords.y >= 0 && coords.y < matrix.height);
+	return (coords.x >= 0 && coords.y < matrix.get_width() && coords.y >= 0 && coords.y < matrix.get_height());
 }
 

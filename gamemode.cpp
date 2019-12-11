@@ -10,7 +10,11 @@ void GameMode::input(int ch) {
 	case 't':
 		Log::write("Target");
 		game->set_action(new EchoAction());
-		game->set_mode(new SelectTileMode(game));
+		game->set_mode(new SelectActionTargetMode(game));
+		break;
+	case 'm':
+		Log::write("Move");
+		game->set_mode(new MovementMode(game));
 		break;
 	case '0':
 		Log::write("Game Mode");
@@ -104,8 +108,29 @@ void SelectTileMode::input(int ch) {
 		case '\r':
 		case '\n':
 			Log::write(std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
+			break;
+	}
+}
+
+
+void MovementMode::input(int ch) {
+	SelectTileMode::input(ch);
+	switch(ch) {
+		case '\r':
+		case '\n':
+			Log::write("Action");
 			game->act();
 			game->set_mode(new FreeMoveMode(game));
 			break;
 	}
+}
+
+void MovementMode::input(int ch) {
+	switch(ch) {
+		case '\r':
+		case '\n':
+			Log::write("Move to: " + std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
+			break;
+	}
+	SelectTileMode::input(ch);
 }

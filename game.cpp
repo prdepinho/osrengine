@@ -52,6 +52,8 @@ void Game::init() {
 	terrain.put_mini(player, 0, 0); 
 	cursor.x = player.get_x();
 	cursor.y = player.get_y();
+
+	astar_map = AStarMap(&terrain);
 }
 
 void Game::end() {

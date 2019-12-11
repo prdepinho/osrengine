@@ -29,3 +29,15 @@ public:
 	SelectTileMode(Game *game=nullptr) : GameMode(game) {}
 	virtual void input(int ch);
 };
+
+class SelectActionTargetMode : public SelectTileMode {
+public:
+   	SelectActionTargetMode(Game *game=nullptr) : SelectTileMode(game) {}
+	virtual void input(int ch);
+};
+
+class MovementMode : public SelectTileMode {
+public:
+   	MovementMode(Game *game=nullptr) : SelectTileMode(game) {}
+	virtual void input(int ch);
+};

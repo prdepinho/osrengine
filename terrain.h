@@ -82,6 +82,8 @@ public:
 	~Terrain(){}
 	Tile *get_tile(int x, int y);
 
+	size_t get_width() const { return width; }
+	size_t get_height() const { return height; }
 	std::vector<Miniature*> get_minies(int x, int y);
 	std::vector<Miniature*> get_minies() { return miniatures; }
 	bool put_mini(Miniature &mini, int x, int y);
