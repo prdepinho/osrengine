@@ -43,6 +43,7 @@ public:
 	void select_tile();
 	void set_action(Action *action);
 	void act();
+	std::stack<AStar::Direction> search_path();
 	Terrain terrain;
 	Miniature player;
 	Coordinates cursor;

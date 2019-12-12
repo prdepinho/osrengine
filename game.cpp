@@ -107,3 +107,12 @@ void Game::act() {
 	if (chosen_action)
 		chosen_action->effect(terrain, player, cursor);
 }
+
+std::stack<AStar::Direction> Game::search_path() {
+	astar_map.set_mover(player);
+	std::stack<AStar::Direction> path = AStar::search(
+			astar_map,
+		   	AStar::Vector2i(player.get_x(), player.get_y()),
+		   	AStar::Vector2i(cursor.x, cursor.y));
+	return path;
+}

@@ -1,6 +1,7 @@
 #include "gamemode.h"
 #include "game.h"
 #include "action.h"
+#include "astar.h"
 
 void GameMode::input(int ch) {
 	switch (ch) {
@@ -113,7 +114,7 @@ void SelectTileMode::input(int ch) {
 }
 
 
-void MovementMode::input(int ch) {
+void SelectActionTargetMode::input(int ch) {
 	SelectTileMode::input(ch);
 	switch(ch) {
 		case '\r':
@@ -126,11 +127,35 @@ void MovementMode::input(int ch) {
 }
 
 void MovementMode::input(int ch) {
+	SelectTileMode::input(ch);
 	switch(ch) {
 		case '\r':
 		case '\n':
 			Log::write("Move to: " + std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
+			std::stack<AStar::Direction> path = game->search_path();
+
+			std::stringstream ss;
+			while (path.size() > 0) {
+				switch (path.top()) {
+					case AStar::Direction::UP:
+						ss << "up" << ", ";
+						break;
+					case AStar::Direction::DOWN:
+						ss << "down" << ", ";
+						break;
+					case AStar::Direction::LEFT:
+						ss << "left" << ", ";
+						break;
+					case AStar::Direction::RIGHT:
+						ss << "right" << ", ";
+						break;
+					default:
+						ss << "?" << ", ";
+						break;
+				}
+				path.pop();
+			}
+			Log::write(ss.str());
 			break;
 	}
-	SelectTileMode::input(ch);
 }

@@ -6,14 +6,8 @@ std::stack<AStar::Direction> AStar::search(
 	   	AStar::Vector2i end,
 	   	unsigned int limit)
 {
-	// consider the destiny as not obstacle for path-finding purposes.
 	size_t matrix_width = matrix.get_width();
 	size_t matrix_height = matrix.get_height();
-	bool obstacle_dst = false;
-	if (matrix.get(end.x, end.y) == 1.f) {
-		obstacle_dst = true;
-		matrix.get(end.x, end.y) = 0.f;
-	}
 
 	std::map<AStar::Direction, std::tuple<int, int>> direction_mods = {
 		{AStar::Direction::UP, std::make_tuple(0, -1)},
@@ -73,11 +67,6 @@ std::stack<AStar::Direction> AStar::search(
 	// return a stack of directions to follow.
 	std::stack<AStar::Direction> path;
 	if (dst_node != nullptr) {
-		// remove destiny from path if it is an obstacle.
-		if (obstacle_dst) {
-			dst_node = dst_node->parent;
-			matrix.get(end.x, end.y) = 1.f;
-		}
 		Node *a_star_node = dst_node;
 		do {
 			path.push(a_star_node->direction);
