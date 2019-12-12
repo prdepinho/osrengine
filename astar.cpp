@@ -1,6 +1,6 @@
 #include "astar.h"
 
-std::stack<AStar::Direction> AStar::search(
+AStar::Path AStar::search(
 		AStar::Matrix &matrix,
 	   	AStar::Vector2i start,
 	   	AStar::Vector2i end,
@@ -65,12 +65,13 @@ std::stack<AStar::Direction> AStar::search(
 	}
 
 	// return a stack of directions to follow.
-	std::stack<AStar::Direction> path;
+	AStar::Path path;
 	if (dst_node != nullptr) {
 		Node *a_star_node = dst_node;
-		do {
+		while (a_star_node->parent != nullptr) {
 			path.push(a_star_node->direction);
-		} while ((a_star_node = a_star_node->parent) != nullptr);
+			a_star_node = a_star_node->parent;
+		}
 	}
 
 	return path;

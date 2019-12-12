@@ -2,18 +2,22 @@
 
 #include <ncurses.h>
 #include "terrain.h"
+#include "astar.h"
 
 class Game;
 
 
 class GameMode {
 public:
-	GameMode(Game *game=nullptr) : game(game) {}
+	GameMode(Game *game=nullptr, bool interactive=true) : game(game), interactive(interactive) {}
 	~GameMode(){}
 	virtual void input(int ch);
 	virtual void draw();
+	virtual void update() {}
+	bool is_interactive() const { return interactive; }
 protected:
 	Game *game;
+	bool interactive;
 };
 
 
@@ -23,12 +27,12 @@ public:
 	virtual void input(int ch);
 };
 
-
 class SelectTileMode : public GameMode {
 public:
 	SelectTileMode(Game *game=nullptr) : GameMode(game) {}
 	virtual void input(int ch);
 };
+
 
 class SelectActionTargetMode : public SelectTileMode {
 public:
@@ -40,4 +44,13 @@ class MovementMode : public SelectTileMode {
 public:
    	MovementMode(Game *game=nullptr) : SelectTileMode(game) {}
 	virtual void input(int ch);
+};
+
+
+class MovementEffectMode : public GameMode {
+public:
+	MovementEffectMode(AStar::Path path, Game *game=nullptr) : GameMode(game, false), path(path) {}
+	virtual void update();
+protected:
+	AStar::Path path;
 };

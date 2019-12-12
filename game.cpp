@@ -1,5 +1,7 @@
 #include "game.h"
 #include <stdio.h>
+#include <chrono>
+#include <thread>
 
 void Game::set_mode(GameMode *mode) {
 	next_mode = mode;
@@ -24,15 +26,21 @@ void Game::loop() {
 	while (running) {
 		switch_mode();
 		if (game_mode) {
+			game_mode->update();
 			game_mode->draw();
-			int ch = getch();
-			game_mode->input(ch);
+			if (game_mode->is_interactive()) {
+				int ch = getch();
+				game_mode->input(ch);
+			}
+			else {
+				std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			}
 		}
 	}
 }
 
 void Game::init() {
-	set_mode(new GameMode(this));
+	set_mode(new FreeMoveMode(this));
 	Dice::initiate();
 	initscr();
 	raw();

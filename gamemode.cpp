@@ -1,7 +1,6 @@
 #include "gamemode.h"
 #include "game.h"
 #include "action.h"
-#include "astar.h"
 
 void GameMode::input(int ch) {
 	switch (ch) {
@@ -132,30 +131,32 @@ void MovementMode::input(int ch) {
 		case '\r':
 		case '\n':
 			Log::write("Move to: " + std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
-			std::stack<AStar::Direction> path = game->search_path();
-
-			std::stringstream ss;
-			while (path.size() > 0) {
-				switch (path.top()) {
-					case AStar::Direction::UP:
-						ss << "up" << ", ";
-						break;
-					case AStar::Direction::DOWN:
-						ss << "down" << ", ";
-						break;
-					case AStar::Direction::LEFT:
-						ss << "left" << ", ";
-						break;
-					case AStar::Direction::RIGHT:
-						ss << "right" << ", ";
-						break;
-					default:
-						ss << "?" << ", ";
-						break;
-				}
-				path.pop();
-			}
-			Log::write(ss.str());
+			AStar::Path path = game->search_path();
+			game->set_mode(new MovementEffectMode(path, game));
 			break;
 	}
+}
+
+void MovementEffectMode::update() {
+	if (path.size() == 0) {
+		Log::write("FreeMoveMode");
+		game->set_mode(new FreeMoveMode(game));
+		return;
+	}
+	
+	switch (path.top()) {
+		case AStar::Direction::UP:
+			game->move_player(Direction::Up);
+			break;
+		case AStar::Direction::DOWN:
+			game->move_player(Direction::Down);
+			break;
+		case AStar::Direction::LEFT:
+			game->move_player(Direction::Left);
+			break;
+		case AStar::Direction::RIGHT:
+			game->move_player(Direction::Right);
+			break;
+	}
+	path.pop();
 }

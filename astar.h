@@ -28,6 +28,9 @@ namespace AStar {
 		UP, DOWN, LEFT, RIGHT
 	};
 
+	typedef std::stack<Direction> Path;
+
+
 	struct Vector2i {
 		Vector2i(int x=0, int y=0) : x(x), y(y) {}
 		bool operator==(const Vector2i &rval) const { return (x == rval.x && y == rval.y); }
@@ -54,7 +57,7 @@ namespace AStar {
 	};
 
 	// matrix is a matrix representing the difficulty of each tile, from 0.0 (effortless) to 1.0 (obstacle).
-	std::stack<Direction> search(
+	Path search(
 			Matrix &matrix,
 		   	Vector2i start,
 		   	Vector2i end,
