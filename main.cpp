@@ -10,7 +10,6 @@
 #include "game.h"
 
 Terrain terrain(width, height);
-Miniature player(Size::Medium, CharAttr());
 
 
 int main() {

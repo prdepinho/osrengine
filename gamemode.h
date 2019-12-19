@@ -40,9 +40,10 @@ public:
 	virtual void input(int ch);
 };
 
-class MovementMode : public SelectTileMode {
+
+class MovementSelectMode : public SelectTileMode {
 public:
-   	MovementMode(Game *game=nullptr) : SelectTileMode(game) {}
+   	MovementSelectMode(Game *game=nullptr) : SelectTileMode(game) {}
 	virtual void input(int ch);
 };
 

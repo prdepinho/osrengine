@@ -7,7 +7,7 @@ void Encounter::roll_initiative() {
 
 	initiative_order = std::vector<Initiative>(minies.size());
 	for (int i = 0; i < minies.size(); i++) {
-		initiative_order[i] = Initiative{ minies[i], minies[i]->get_attr().initiative + Dice::roll(20) };
+		initiative_order[i] = Initiative{ minies[i], minies[i]->get_character().initiative + roll_die(20) };
 	}
 
 	std::sort(

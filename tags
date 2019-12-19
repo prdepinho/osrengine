@@ -1,0 +1,248 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ACTION_ATTACK	_main.cpp	/^	ACTION_ATTACK,$/;"	m	class:OptionType	file:
+ACTION_MOVE	_main.cpp	/^	ACTION_MOVE,$/;"	m	class:OptionType	file:
+ACTION_WAIT	_main.cpp	/^	ACTION_WAIT,$/;"	m	class:OptionType	file:
+AOE	action.h	/^typedef std::vector<Tile*> AOE;$/;"	t
+AStar	astar.h	/^namespace AStar {$/;"	n
+AStarMap	game.h	/^	AStarMap(Terrain *terrain=nullptr) : terrain(terrain) {}$/;"	f	class:AStarMap
+AStarMap	game.h	/^class AStarMap : public AStar::Matrix {$/;"	c
+Action	_main.cpp	/^	Action,$/;"	m	class:InputMode	file:
+Action	action.h	/^class Action {$/;"	c
+BLACK_WHITE	_main.cpp	/^const int BLACK_WHITE = 2;$/;"	v
+BLACK_WHITE	game.h	/^const int BLACK_WHITE = 2;$/;"	v
+BoardInteract	_main.cpp	/^	BoardInteract,$/;"	m	class:GameState	file:
+CC	Makefile	/^CC = g++$/;"	m
+CharAttr	terrain.h	/^struct CharAttr {$/;"	s	class:Size::Direction
+Coordinates	terrain.h	/^struct Coordinates {$/;"	s	class:Size::Direction
+DOWN	astar.h	/^		UP, DOWN, LEFT, RIGHT$/;"	m	class:AStar::Direction
+Dice	dice.h	/^namespace Dice$/;"	n
+Direction	astar.h	/^	enum class Direction {$/;"	c	namespace:AStar
+Direction	terrain.h	/^enum class Direction {$/;"	c	class:Size
+Down	terrain.h	/^	Down = 2,$/;"	m	class:Size::Direction
+EXE	Makefile	/^EXE = program$/;"	m
+EchoAction	action.h	/^class EchoAction : public Action {$/;"	c
+Encounter	encounter.h	/^	Encounter(Terrain &terrain) : terrain(&terrain) {}$/;"	f	class:Encounter
+Encounter	encounter.h	/^class Encounter {$/;"	c
+FAST_A_STAR_LOOP	astar.h	16;"	d
+FLAGS	Makefile	/^FLAGS = -g$/;"	m
+FreeMove	_main.cpp	/^	FreeMove,$/;"	m	class:InputMode	file:
+FreeMoveMode	gamemode.cpp	/^FreeMoveMode::FreeMoveMode(Game *game) : GameMode(game) {$/;"	f	class:FreeMoveMode
+FreeMoveMode	gamemode.h	/^class FreeMoveMode : public GameMode {$/;"	c
+FreeMoveState	_main.cpp	/^class FreeMoveState : public LoopState {$/;"	c	file:
+Game	game.h	/^	Game() {}$/;"	f	class:Game
+Game	game.h	/^class Game {$/;"	c
+GameMode	gamemode.h	/^	GameMode(Game *game=nullptr, bool interactive=true) : game(game), interactive(interactive) {}$/;"	f	class:GameMode
+GameMode	gamemode.h	/^class GameMode {$/;"	c
+GameState	_main.cpp	/^enum class GameState {$/;"	c	file:
+Gargantuan	terrain.h	/^	Gargantuan = 5$/;"	m	class:Size
+Huge	terrain.h	/^	Huge = 4,$/;"	m	class:Size
+Initiative	encounter.h	/^struct Initiative {$/;"	s
+InputMode	_main.cpp	/^enum class InputMode {$/;"	c	file:
+LEFT	astar.h	/^		UP, DOWN, LEFT, RIGHT$/;"	m	class:AStar::Direction
+Large	terrain.h	/^	Large = 3,$/;"	m	class:Size
+Left	terrain.h	/^	Left = 3,$/;"	m	class:Size::Direction
+Log	log.h	/^	Log(){}$/;"	f	class:Log
+Log	log.h	/^	Log(Log &log){}$/;"	f	class:Log
+Log	log.h	/^class Log {$/;"	c
+LoopState	_main.cpp	/^class LoopState {$/;"	c	file:
+Matrix	astar.h	/^	struct Matrix {$/;"	s	namespace:AStar
+Medium	terrain.h	/^	Medium = 2,$/;"	m	class:Size
+Menu	_main.cpp	/^	Menu() {}$/;"	f	class:Menu
+Menu	_main.cpp	/^class Menu {$/;"	c	file:
+MenuInteract	_main.cpp	/^	MenuInteract,$/;"	m	class:GameState	file:
+Miniature	terrain.h	/^	Miniature(Size size=Size::Medium, CharAttr attr={}) : size(size), attr(attr) {}$/;"	f	class:Size::Direction::Miniature
+Miniature	terrain.h	/^class Miniature {$/;"	c	class:Size::Direction
+MovementEffectMode	gamemode.h	/^	MovementEffectMode(AStar::Path path, Game *game=nullptr) : GameMode(game, false), path(path) {}$/;"	f	class:MovementEffectMode
+MovementEffectMode	gamemode.h	/^class MovementEffectMode : public GameMode {$/;"	c
+MovementSelectMode	gamemode.h	/^   	MovementSelectMode(Game *game=nullptr) : SelectTileMode(game) {}$/;"	f	class:MovementSelectMode
+MovementSelectMode	gamemode.h	/^class MovementSelectMode : public SelectTileMode {$/;"	c
+Node	astar.h	/^		Node(Vector2i coords=Vector2i(), Node *parent=nullptr, float local=3.402823466e+38F, float global=3.402823466e+38F, bool visited=false)$/;"	f	struct:AStar::Node
+Node	astar.h	/^	struct Node {$/;"	s	namespace:AStar
+NodeComparison	astar.h	/^	struct NodeComparison {$/;"	s	namespace:AStar
+None	terrain.h	/^	None = -1,$/;"	m	class:Size
+OBJ	Makefile	/^OBJ = $(SRC:.cpp=.o)$/;"	m
+Option	_main.cpp	/^struct Option {$/;"	s	file:
+OptionType	_main.cpp	/^enum class OptionType {$/;"	c	file:
+Path	astar.h	/^	typedef std::stack<Direction> Path;$/;"	t	namespace:AStar
+Right	terrain.h	/^	Right = 4$/;"	m	class:Size::Direction
+SRC	Makefile	/^SRC = main.cpp dice.cpp astar.cpp log.cpp action.cpp terrain.cpp encounter.cpp game.cpp gamemode.cpp$/;"	m
+SelectActionTargetMode	gamemode.h	/^   	SelectActionTargetMode(Game *game=nullptr) : SelectTileMode(game) {}$/;"	f	class:SelectActionTargetMode
+SelectActionTargetMode	gamemode.h	/^class SelectActionTargetMode : public SelectTileMode {$/;"	c
+SelectOptionState	_main.cpp	/^class SelectOptionState : public LoopState {$/;"	c	file:
+SelectTileMode	gamemode.h	/^	SelectTileMode(Game *game=nullptr) : GameMode(game) {}$/;"	f	class:SelectTileMode
+SelectTileMode	gamemode.h	/^class SelectTileMode : public GameMode {$/;"	c
+SelectTileState	_main.cpp	/^class SelectTileState : public LoopState {$/;"	c	file:
+Size	terrain.h	/^enum class Size {$/;"	c
+Small	terrain.h	/^	Small = 1,$/;"	m	class:Size
+Target	_main.cpp	/^	Target,$/;"	m	class:InputMode	file:
+Terrain	terrain.cpp	/^Terrain::Terrain(size_t width, size_t height)$/;"	f	class:Terrain
+Terrain	terrain.h	/^class Terrain {$/;"	c	class:Size::Direction
+Tile	terrain.h	/^	Tile(int x=0, int y=0, bool obstacle=false) : x(x), y(y), obstacle(obstacle) {}$/;"	f	class:Size::Direction::Tile
+Tile	terrain.h	/^class Tile {$/;"	c	class:Size::Direction
+Tiny	terrain.h	/^	Tiny = 0,$/;"	m	class:Size
+UP	astar.h	/^		UP, DOWN, LEFT, RIGHT$/;"	m	class:AStar::Direction
+Up	terrain.h	/^	Up = 1,$/;"	m	class:Size::Direction
+Vector2i	astar.h	/^		Vector2i(int x=0, int y=0) : x(x), y(y) {}$/;"	f	struct:AStar::Vector2i
+Vector2i	astar.h	/^	struct Vector2i {$/;"	s	namespace:AStar
+WHITE_BLACK	_main.cpp	/^const int WHITE_BLACK = 1;$/;"	v
+WHITE_BLACK	game.h	/^const int WHITE_BLACK = 1;$/;"	v
+abl_cha	terrain.h	/^	int abl_cha;$/;"	m	struct:Size::Direction::CharAttr
+abl_con	terrain.h	/^	int abl_con;$/;"	m	struct:Size::Direction::CharAttr
+abl_dex	terrain.h	/^	int abl_dex;$/;"	m	struct:Size::Direction::CharAttr
+abl_int	terrain.h	/^	int abl_int;$/;"	m	struct:Size::Direction::CharAttr
+abl_str	terrain.h	/^	int abl_str;$/;"	m	struct:Size::Direction::CharAttr
+abl_wis	terrain.h	/^	int abl_wis;$/;"	m	struct:Size::Direction::CharAttr
+act	game.cpp	/^void Game::act() {$/;"	f	class:Game
+action_menu	_main.cpp	/^Menu action_menu;$/;"	v
+add_option	_main.cpp	/^	void add_option(Option option) { options.push_back(option); }$/;"	f	class:Menu
+astar_map	game.h	/^	AStarMap astar_map;$/;"	m	class:Game
+attr	_main.cpp	/^CharAttr attr;$/;"	v
+attr	terrain.h	/^	CharAttr attr;$/;"	m	class:Size::Direction::Miniature
+chosen	_main.cpp	/^Coordinates chosen;$/;"	v
+chosen	game.h	/^	Coordinates chosen;$/;"	m	class:Game
+chosen_action	game.h	/^	Action *chosen_action = nullptr;$/;"	m	class:Game
+coords	astar.h	/^		Vector2i coords;$/;"	m	struct:AStar::Node
+cur_hp	terrain.h	/^	int cur_hp;$/;"	m	struct:Size::Direction::CharAttr
+current_mini	_main.cpp	/^Miniature *current_mini = nullptr;$/;"	v
+cursor	_main.cpp	/^	int cursor;$/;"	m	class:Menu	file:
+cursor	_main.cpp	/^Coordinates cursor;$/;"	v
+cursor	game.h	/^	Coordinates cursor;$/;"	m	class:Game
+cursor	log.h	/^	int cursor = 0;$/;"	m	class:Log
+direction	astar.h	/^		Direction direction;$/;"	m	struct:AStar::Node
+distance	astar.cpp	/^inline float AStar::distance(AStar::Vector2i na, AStar::Vector2i nb) {$/;"	f	class:AStar
+draw	gamemode.cpp	/^void GameMode::draw() {$/;"	f	class:GameMode
+effect	action.h	/^	virtual void effect(Terrain &terrain, Miniature &actor, Coordinates target) {$/;"	f	class:EchoAction
+end	game.cpp	/^void Game::end() {$/;"	f	class:Game
+find_mini	terrain.cpp	/^Coordinates Terrain::find_mini(Miniature &mini) {$/;"	f	class:Terrain
+fits_mini	terrain.cpp	/^bool Terrain::fits_mini(Miniature &mini, int target_x, int target_y) {$/;"	f	class:Terrain
+game	gamemode.h	/^	Game *game;$/;"	m	class:GameMode
+game_mode	game.h	/^	GameMode *game_mode = nullptr;$/;"	m	class:Game
+get	game.h	/^	virtual float get(int x, int y) { return (terrain->fits_mini(*mover, x, y) ? .0f : 1.f); }$/;"	f	class:AStarMap
+get	log.cpp	/^Log &Log::get() {$/;"	f	class:Log
+get_attr	terrain.h	/^	CharAttr get_attr() const { return attr; }$/;"	f	class:Size::Direction::Miniature
+get_coords	terrain.h	/^	Coordinates get_coords() const { return Coordinates{x, y}; }$/;"	f	class:Size::Direction::Miniature
+get_cursor	_main.cpp	/^	int get_cursor() const { return cursor; }$/;"	f	class:Menu
+get_height	game.h	/^	virtual size_t get_height() const { return terrain->get_height(); }$/;"	f	class:AStarMap
+get_height	terrain.h	/^	size_t get_height() const { return height; }$/;"	f	class:Size::Direction::Terrain
+get_lines	log.cpp	/^std::vector<std::string> Log::get_lines(int quantity=-1) {$/;"	f	class:Log
+get_minies	terrain.cpp	/^std::vector<Miniature*> Terrain::get_minies(int x, int y) {$/;"	f	class:Terrain
+get_minies	terrain.h	/^	std::vector<Miniature*> get_minies() { return miniatures; }$/;"	f	class:Size::Direction::Terrain
+get_option_by_shortcut	_main.cpp	/^	Option *get_option_by_shortcut(char shortcut) {$/;"	f	class:Menu
+get_options	_main.cpp	/^	std::vector<Option> get_options() const { return options; }$/;"	f	class:Menu
+get_selected_option	_main.cpp	/^	Option get_selected_option() const { return options[cursor]; }$/;"	f	class:Menu
+get_size	terrain.h	/^	Size get_size() const { return size; }$/;"	f	class:Size::Direction::Miniature
+get_tile	terrain.cpp	/^Tile *Terrain::get_tile(int x, int y) {$/;"	f	class:Terrain
+get_tiles	terrain.h	/^	std::vector<Tile*> get_tiles() { return tiles; }$/;"	f	class:Size::Direction::Miniature
+get_width	game.h	/^	virtual size_t get_width() const { return terrain->get_width(); }$/;"	f	class:AStarMap
+get_width	terrain.h	/^	size_t get_width() const { return width; }$/;"	f	class:Size::Direction::Terrain
+get_x	terrain.h	/^	int get_x() const { return x; }$/;"	f	class:Size::Direction::Miniature
+get_x	terrain.h	/^	int get_x() const { return x; }$/;"	f	class:Size::Direction::Tile
+get_y	terrain.h	/^	int get_y() const { return y; }$/;"	f	class:Size::Direction::Miniature
+get_y	terrain.h	/^	int get_y() const { return y; }$/;"	f	class:Size::Direction::Tile
+global	astar.h	/^		float global;$/;"	m	struct:AStar::Node
+height	_main.cpp	/^const size_t height = 10;$/;"	v
+height	game.h	/^const size_t height = 10;$/;"	v
+height	terrain.h	/^	size_t height;$/;"	m	class:Size::Direction::Terrain
+highlight	_main.cpp	/^std::vector<Coordinates> highlight;$/;"	v
+in_bounds	astar.cpp	/^inline bool AStar::in_bounds(AStar::Matrix &matrix, AStar::Vector2i coords) {$/;"	f	class:AStar
+init	game.cpp	/^void Game::init() {$/;"	f	class:Game
+initiate	dice.cpp	/^void Dice::initiate() {$/;"	f	class:Dice
+initiative	encounter.h	/^	int initiative;$/;"	m	struct:Initiative
+initiative	terrain.h	/^	int initiative;$/;"	m	struct:Size::Direction::CharAttr
+initiative_order	encounter.h	/^	std::vector<Initiative> initiative_order;$/;"	m	class:Encounter
+input	_main.cpp	/^	virtual void input(char ch) {}$/;"	f	class:LoopState
+input	gamemode.cpp	/^void FreeMoveMode::input(int ch) {$/;"	f	class:FreeMoveMode
+input	gamemode.cpp	/^void GameMode::input(int ch) {$/;"	f	class:GameMode
+input	gamemode.cpp	/^void MovementSelectMode::input(int ch) {$/;"	f	class:MovementSelectMode
+input	gamemode.cpp	/^void SelectActionTargetMode::input(int ch) {$/;"	f	class:SelectActionTargetMode
+input	gamemode.cpp	/^void SelectTileMode::input(int ch) {$/;"	f	class:SelectTileMode
+input_mode	_main.cpp	/^InputMode input_mode;$/;"	v
+interactive	gamemode.h	/^	bool interactive;$/;"	m	class:GameMode
+is_interactive	gamemode.h	/^	bool is_interactive() const { return interactive; }$/;"	f	class:GameMode
+is_obstacle	terrain.h	/^	bool is_obstacle() const { return obstacle; }$/;"	f	class:Size::Direction::Tile
+label	_main.cpp	/^	std::string label;$/;"	m	struct:Option	file:
+lines	log.h	/^	std::vector<std::string> lines;$/;"	m	class:Log
+local	astar.h	/^		float local;$/;"	m	struct:AStar::Node
+loop	_main.cpp	/^bool loop = true;$/;"	v
+loop	game.cpp	/^void Game::loop() {$/;"	f	class:Game
+main	_main.cpp	/^int main(){$/;"	f
+main	main.cpp	/^int main() {$/;"	f
+max_hp	terrain.h	/^	int max_hp;$/;"	m	struct:Size::Direction::CharAttr
+mini	encounter.h	/^	Miniature *mini;$/;"	m	struct:Initiative
+miniatures	terrain.h	/^	std::vector<Miniature*> miniatures;$/;"	m	class:Size::Direction::Terrain
+move_cursor	_main.cpp	/^	void move_cursor(int delta) {$/;"	f	class:Menu
+move_cursor	game.cpp	/^void Game::move_cursor(Direction dir) {$/;"	f	class:Game
+move_mini	terrain.cpp	/^bool Terrain::move_mini(Miniature &mini, Direction dir) {$/;"	f	class:Terrain
+move_mini	terrain.cpp	/^bool Terrain::move_mini(Miniature &mini, int x, int y) {$/;"	f	class:Terrain
+move_player	game.cpp	/^void Game::move_player(Direction dir) {$/;"	f	class:Game
+mover	game.h	/^	Miniature *mover;$/;"	m	class:AStarMap
+next_mini	encounter.cpp	/^Miniature *Encounter::next_mini() {$/;"	f	class:Encounter
+next_mode	game.h	/^	GameMode *next_mode = nullptr;$/;"	m	class:Game
+obstacle	terrain.h	/^	bool obstacle;$/;"	m	class:Size::Direction::Tile
+operator ()	astar.h	/^		bool operator() (const Node *lhs, const Node *rhs) {$/;"	f	struct:AStar::NodeComparison
+operator ==	astar.h	/^		bool operator==(const Vector2i &rval) const { return (x == rval.x && y == rval.y); }$/;"	f	struct:AStar::Vector2i
+options	_main.cpp	/^	std::vector<Option> options;$/;"	m	class:Menu	file:
+parent	astar.h	/^		Node *parent;$/;"	m	struct:AStar::Node
+path	gamemode.h	/^	AStar::Path path;$/;"	m	class:MovementEffectMode
+player	game.h	/^	Miniature player;$/;"	m	class:Game
+prof_bonus	terrain.h	/^	int prof_bonus;$/;"	m	struct:Size::Direction::CharAttr
+put_mini	terrain.cpp	/^bool Terrain::put_mini(Miniature &mini, int x, int y) {$/;"	f	class:Terrain
+reset_cursor	game.cpp	/^void Game::reset_cursor() {$/;"	f	class:Game
+roll	dice.cpp	/^int Dice::roll(int sides) {$/;"	f	class:Dice
+roll_initiative	encounter.cpp	/^void Encounter::roll_initiative() {$/;"	f	class:Encounter
+running	game.h	/^	bool running = true;$/;"	m	class:Game
+screen_height	_main.cpp	/^const size_t screen_height = 24;$/;"	v
+screen_height	game.h	/^const size_t screen_height = 24;$/;"	v
+screen_width	_main.cpp	/^const size_t screen_width = 80;$/;"	v
+screen_width	game.h	/^const size_t screen_width = 80;$/;"	v
+scroll_lines	log.cpp	/^void Log::scroll_lines(int quantity) {$/;"	f	class:Log
+search	astar.cpp	/^AStar::Path AStar::search($/;"	f	class:AStar
+search_path	game.cpp	/^std::stack<AStar::Direction> Game::search_path() {$/;"	f	class:Game
+set_action	game.cpp	/^void Game::set_action(Action *action) {$/;"	f	class:Game
+set_coords	terrain.h	/^	void set_coords(int x, int y) { this->x = x; this->y = y; }$/;"	f	class:Size::Direction::Miniature
+set_mode	game.cpp	/^void Game::set_mode(GameMode *mode) {$/;"	f	class:Game
+set_mover	game.h	/^	void set_mover(Miniature &miniature) { mover = &miniature; }$/;"	f	class:AStarMap
+set_tiles	terrain.h	/^	void set_tiles(std::vector<Tile*> tiles) { this->tiles = tiles; }$/;"	f	class:Size::Direction::Miniature
+shortcut	_main.cpp	/^	char shortcut;$/;"	m	struct:Option	file:
+size	terrain.h	/^	Size size;$/;"	m	class:Size::Direction::Miniature
+speed	terrain.h	/^	int speed;$/;"	m	struct:Size::Direction::CharAttr
+start	game.cpp	/^void Game::start() {$/;"	f	class:Game
+state	_main.cpp	/^GameState state = GameState::MenuInteract;$/;"	v
+stop	game.h	/^	void stop() { running = false; }$/;"	f	class:Game
+switch_mode	game.cpp	/^void Game::switch_mode() {$/;"	f	class:Game
+take_mini	terrain.cpp	/^void Terrain::take_mini(Miniature &mini) {$/;"	f	class:Terrain
+terrain	encounter.h	/^	Terrain *terrain;$/;"	m	class:Encounter
+terrain	game.h	/^	Terrain *terrain;$/;"	m	class:AStarMap
+terrain	game.h	/^	Terrain terrain;$/;"	m	class:Game
+tiles	terrain.h	/^	std::vector<Tile*> tiles;$/;"	m	class:Size::Direction::Miniature
+tiles	terrain.h	/^	std::vector<Tile> tiles;$/;"	m	class:Size::Direction::Terrain
+type	_main.cpp	/^	OptionType type;$/;"	m	struct:Option	file:
+update	_main.cpp	/^	virtual void update() {}$/;"	f	class:LoopState
+update	gamemode.cpp	/^void MovementEffectMode::update() {$/;"	f	class:MovementEffectMode
+update	gamemode.h	/^	virtual void update() {}$/;"	f	class:GameMode
+visited	astar.h	/^		bool visited;$/;"	m	struct:AStar::Node
+width	_main.cpp	/^const size_t width = 20;$/;"	v
+width	game.h	/^const size_t width = 20;$/;"	v
+width	terrain.h	/^	size_t width;$/;"	m	class:Size::Direction::Terrain
+write	log.cpp	/^void Log::write(std::string str) {$/;"	f	class:Log
+x	astar.h	/^		int x;$/;"	m	struct:AStar::Vector2i
+x	terrain.h	/^	int x;$/;"	m	class:Size::Direction::Miniature
+x	terrain.h	/^	int x;$/;"	m	class:Size::Direction::Tile
+x	terrain.h	/^	int x;$/;"	m	struct:Size::Direction::Coordinates
+y	astar.h	/^		int y;$/;"	m	struct:AStar::Vector2i
+y	terrain.h	/^	int y;$/;"	m	class:Size::Direction::Miniature
+y	terrain.h	/^	int y;$/;"	m	class:Size::Direction::Tile
+y	terrain.h	/^	int y;$/;"	m	struct:Size::Direction::Coordinates
+~Encounter	encounter.h	/^	~Encounter() {}$/;"	f	class:Encounter
+~Game	game.h	/^	~Game() { if (running) end(); }$/;"	f	class:Game
+~GameMode	gamemode.h	/^	~GameMode(){}$/;"	f	class:GameMode
+~Log	log.h	/^	~Log(){}$/;"	f	class:Log
+~Menu	_main.cpp	/^	~Menu() {}$/;"	f	class:Menu
+~Miniature	terrain.h	/^	~Miniature() {}$/;"	f	class:Size::Direction::Miniature
+~Terrain	terrain.h	/^	~Terrain(){}$/;"	f	class:Size::Direction::Terrain
+~Tile	terrain.h	/^	~Tile() {}$/;"	f	class:Size::Direction::Tile

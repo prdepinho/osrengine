@@ -8,6 +8,7 @@
 #include "log.h"
 #include "action.h"
 #include "astar.h"
+#include "rules.h"
 
 const int WHITE_BLACK = 1;
 const int BLACK_WHITE = 2;

@@ -14,7 +14,7 @@ void GameMode::input(int ch) {
 		break;
 	case 'm':
 		Log::write("Move");
-		game->set_mode(new MovementMode(game));
+		game->set_mode(new MovementSelectMode(game));
 		break;
 	case '0':
 		Log::write("Game Mode");
@@ -32,7 +32,6 @@ void GameMode::input(int ch) {
 }
 
 void GameMode::draw() {
-	clear();
 	// draw map
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
@@ -63,7 +62,6 @@ void GameMode::draw() {
 			mvprintw(y++, x, line.c_str());
 		}
 	}
-	refresh();
 }
 
 
@@ -107,7 +105,6 @@ void SelectTileMode::input(int ch) {
 			break;
 		case '\r':
 		case '\n':
-			Log::write(std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
 			break;
 	}
 }
@@ -125,12 +122,11 @@ void SelectActionTargetMode::input(int ch) {
 	}
 }
 
-void MovementMode::input(int ch) {
+void MovementSelectMode::input(int ch) {
 	SelectTileMode::input(ch);
 	switch(ch) {
 		case '\r':
 		case '\n':
-			Log::write("Move to: " + std::to_string(game->cursor.x) + ", " + std::to_string(game->cursor.y));
 			AStar::Path path = game->search_path();
 			game->set_mode(new MovementEffectMode(path, game));
 			break;
@@ -139,7 +135,6 @@ void MovementMode::input(int ch) {
 
 void MovementEffectMode::update() {
 	if (path.size() == 0) {
-		Log::write("FreeMoveMode");
 		game->set_mode(new FreeMoveMode(game));
 		return;
 	}

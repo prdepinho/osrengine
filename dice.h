@@ -2,11 +2,15 @@
 #include <cstdlib>
 #include <ctime>
 
-namespace Dice
-{
+class Dice {
+public:
+	Dice(int quantity=0, int sides=0) : quantity(quantity), sides(sides) {}
+	int roll();
+private:
+	int quantity;
+	int sides;
+};
 
-void initiate();
+void initiate_dice();
 
-int roll(int sides);
-
-}
+int roll_die(int sides);

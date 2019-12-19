@@ -5,6 +5,21 @@
 
 class Tile;
 
+struct Character {
+	int abl_str;
+	int abl_dex;
+	int abl_con;
+	int abl_int;
+	int abl_wis;
+	int abl_cha;
+	int armor_class;
+	int max_hp;
+	int cur_hp;
+	int speed;
+	int prof_bonus;
+	int initiative;
+};
+
 enum class Size {
 	None = -1,
 	Tiny = 0,
@@ -27,23 +42,9 @@ struct Coordinates {
 	int y;
 };
 
-struct CharAttr {
-	int abl_str;
-	int abl_dex;
-	int abl_con;
-	int abl_int;
-	int abl_wis;
-	int abl_cha;
-	int max_hp;
-	int cur_hp;
-	int speed;
-	int prof_bonus;
-	int initiative;
-};
-
 class Miniature {
 public:
-	Miniature(Size size=Size::Medium, CharAttr attr={}) : size(size), attr(attr) {}
+	Miniature(Size size=Size::Medium, Character character={}) : size(size), character(character) {}
 	~Miniature() {}
 	std::vector<Tile*> get_tiles() { return tiles; }
 	void set_tiles(std::vector<Tile*> tiles) { this->tiles = tiles; }
@@ -52,13 +53,13 @@ public:
 	void set_coords(int x, int y) { this->x = x; this->y = y; }
 	int get_x() const { return x; }
 	int get_y() const { return y; }
-	CharAttr get_attr() const { return attr; }
+	Character &get_character() { return character; }
 private:
 	Size size;
 	std::vector<Tile*> tiles;
 	int x;
 	int y;
-	CharAttr attr;
+	Character character;
 };
 
 

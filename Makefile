@@ -1,6 +1,6 @@
 
 EXE = program
-SRC = main.cpp dice.cpp astar.cpp log.cpp action.cpp terrain.cpp encounter.cpp game.cpp gamemode.cpp
+SRC = main.cpp dice.cpp astar.cpp log.cpp action.cpp rules.cpp terrain.cpp encounter.cpp game.cpp gamemode.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = g++
 FLAGS = -g
@@ -13,3 +13,7 @@ $(EXE): $(OBJ)
 
 clean:
 	rm $(OBJ) $(EXE)
+
+rebuild:
+	rm $(OBJ) $(EXE)
+	make

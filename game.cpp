@@ -27,7 +27,9 @@ void Game::loop() {
 		switch_mode();
 		if (game_mode) {
 			game_mode->update();
+			clear();
 			game_mode->draw();
+			refresh();
 			if (game_mode->is_interactive()) {
 				int ch = getch();
 				game_mode->input(ch);
@@ -41,7 +43,7 @@ void Game::loop() {
 
 void Game::init() {
 	set_mode(new FreeMoveMode(this));
-	Dice::initiate();
+	initiate_dice();
 	initscr();
 	raw();
 	noecho();
@@ -56,7 +58,7 @@ void Game::init() {
 	chosen.y = 0;
 
 	terrain = Terrain(width, height);
-	player = Miniature(Size::Medium, CharAttr());
+	player = Miniature(Size::Medium, Character());
 	terrain.put_mini(player, 0, 0); 
 	cursor.x = player.get_x();
 	cursor.y = player.get_y();
