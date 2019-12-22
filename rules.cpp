@@ -67,3 +67,15 @@ int AttackContext::add_damage_bonuses(int damage_roll) {
 	int weapon_bonus = attack->damage.bonus_damage;
 	return damage_roll + ability_bonus + weapon_bonus;
 }
+
+void AttackContext::deal_damage(int damage) {
+	target->get_character().cur_hp -= damage;
+	if (target->get_character().cur_hp > 0) {
+		if (damage > (target->get_character().max_hp / 2)) {
+			// shock
+		}
+	}
+	else {
+		// dead
+	}
+}

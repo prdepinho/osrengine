@@ -33,6 +33,7 @@ public:
 	bool attack_hit(int attack_roll);
 	int roll_damage(bool crit);
 	int add_damage_bonuses(int damage_roll);
+	void deal_damage(int damage);
 
 	std::vector<int> get_attack_rolls() { return attack_rolls; }
 	std::vector<int> get_damage_rolls() { return damage_rolls; }
