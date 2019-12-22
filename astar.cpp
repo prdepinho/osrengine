@@ -42,7 +42,7 @@ AStar::Path AStar::search(
 		for (AStar::Direction &direction : directions) {
 			int x = current->coords.x + std::get<0>(direction_mods[direction]);
 			int y = current->coords.y + std::get<1>(direction_mods[direction]);
-			if (in_bounds(matrix, Vector2i(x, y)) && !matrix.get(x, y) == 1.f) {
+			if (in_bounds(matrix, Vector2i(x, y)) && matrix.get(x, y) != 1.f) {
 				AStar::Vector2i neighbor(x, y);
 				Node *neighbor_node = &search_grid[neighbor.y * matrix_width + neighbor.x];
 

@@ -26,6 +26,8 @@ std::vector<Miniature*> Terrain::get_minies(int x, int y) {
 		bool contains = false;
 		Coordinates coords = mini->get_coords();
 		switch (mini->get_size()) {
+		case Size::None:
+			break;
 		case Size::Tiny:
 		case Size::Small:
 		case Size::Medium:

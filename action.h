@@ -9,6 +9,7 @@ typedef std::vector<Tile*> AOE;
 
 class Action {
 public:
+	virtual ~Action() {}
 	virtual void effect(Terrain &terrain, Miniature &actor, Coordinates target) = 0;
 };
 
