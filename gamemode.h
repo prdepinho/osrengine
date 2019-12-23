@@ -10,7 +10,7 @@ class Game;
 class GameMode {
 public:
 	GameMode(Game *game=nullptr, bool interactive=true) : game(game), interactive(interactive) {}
-	~GameMode(){}
+	virtual ~GameMode() {}
 	virtual void input(int ch);
 	virtual void draw();
 	virtual void update() {}
@@ -36,14 +36,14 @@ public:
 
 class SelectActionTargetMode : public SelectTileMode {
 public:
-   	SelectActionTargetMode(Game *game=nullptr) : SelectTileMode(game) {}
+	SelectActionTargetMode(Game *game=nullptr) : SelectTileMode(game) {}
 	virtual void input(int ch);
 };
 
 
 class MovementSelectMode : public SelectTileMode {
 public:
-   	MovementSelectMode(Game *game=nullptr) : SelectTileMode(game) {}
+	MovementSelectMode(Game *game=nullptr) : SelectTileMode(game) {}
 	virtual void input(int ch);
 };
 
@@ -54,4 +54,19 @@ public:
 	virtual void update();
 protected:
 	AStar::Path path;
+};
+
+
+
+class AttackSelectMode : public SelectTileMode {
+public:
+	AttackSelectMode(Game *game=nullptr) : SelectTileMode(game) {}
+	virtual void input(int ch);
+};
+
+
+class AttackEffectMode : public GameMode {
+public:
+	AttackEffectMode(AStar::Path path, Game *game=nullptr) : GameMode(game, false), path(path) {}
+	virtual void update();
 };

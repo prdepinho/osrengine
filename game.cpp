@@ -58,8 +58,21 @@ void Game::init() {
 	chosen.y = 0;
 
 	terrain = Terrain(width, height);
-	player = Miniature(Size::Medium, Character());
+	player = Miniature(Size::Medium, Character {
+		10, 10, 10, 10, 10, 10,  // str, dev, con, int, wis, cha
+		10, 10, 10, 30, 2, 0     // ac, max_hp, cur_hp, speed, prof_bonus, initiative
+	});
 	terrain.put_mini(player, 0, 0); 
+	
+	{
+		Miniature npc(Size::Medium, Character {
+				10, 10, 10, 10, 10, 10,
+				10, 10, 10, 30, 2, 0
+				});
+		npcs.push_back(npc);
+		terrain.put_mini(npcs.back(), 1, 2); 
+	}
+
 	cursor.x = player.get_x();
 	cursor.y = player.get_y();
 
@@ -74,10 +87,11 @@ void Game::end() {
 		delete next_mode;
 }
 
-void Game::move_player(Direction dir) {
-	terrain.move_mini(player, dir);
+bool Game::move_player(Direction dir) {
+	bool rval = terrain.move_mini(player, dir);
 	cursor.x = player.get_x();
 	cursor.y = player.get_y();
+	return rval;
 }
 
 void Game::move_cursor(Direction dir) {

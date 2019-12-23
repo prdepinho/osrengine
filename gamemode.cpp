@@ -16,6 +16,9 @@ void GameMode::input(int ch) {
 		Log::write("Move");
 		game->set_mode(new MovementSelectMode(game));
 		break;
+	case 'a':
+		Log::write("Attack");
+		game->set_mode(new AttackSelectMode(game));
 	case '0':
 		Log::write("Game Mode");
 		game->set_mode(new GameMode(game));
@@ -71,18 +74,19 @@ FreeMoveMode::FreeMoveMode(Game *game) : GameMode(game) {
 
 void FreeMoveMode::input(int ch) {
 	GameMode::input(ch);
+	bool rval;
 	switch (ch) {
 		case 'k':
-			game->move_player(Direction::Up);
+			rval = game->move_player(Direction::Up);
 			break;
 		case 'j':
-			game->move_player(Direction::Down);
+			rval = game->move_player(Direction::Down);
 			break;
 		case 'h':
-			game->move_player(Direction::Left);
+			rval = game->move_player(Direction::Left);
 			break;
 		case 'l':
-			game->move_player(Direction::Right);
+			rval = game->move_player(Direction::Right);
 			break;
 	}
 }
@@ -155,3 +159,19 @@ void MovementEffectMode::update() {
 	}
 	path.pop();
 }
+
+void AttackSelectMode::input(int ch) {
+	SelectTileMode::input(ch);
+	switch(ch) {
+		case '\r':
+		case '\n':
+			AStar::Path path = game->search_path();
+			game->set_mode(new AttackEffectMode(path, game));
+			break;
+	}
+}
+
+void AttackEffectMode::update() {
+
+}
+

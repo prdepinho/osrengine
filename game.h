@@ -38,7 +38,7 @@ public:
 	void start();
 	void stop() { running = false; }
 	void set_mode(GameMode *mode);
-	void move_player(Direction dir);
+	bool move_player(Direction dir);
 	void move_cursor(Direction dir);
 	void reset_cursor();
 	void select_tile();
@@ -47,6 +47,7 @@ public:
 	std::stack<AStar::Direction> search_path();
 	Terrain terrain;
 	Miniature player;
+	std::vector<Miniature> npcs;
 	Coordinates cursor;
 private:
 	void init();
