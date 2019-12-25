@@ -63,10 +63,3 @@ public:
 	AttackSelectMode(Game *game=nullptr) : SelectTileMode(game) {}
 	virtual void input(int ch);
 };
-
-
-class AttackEffectMode : public GameMode {
-public:
-	AttackEffectMode(AStar::Path path, Game *game=nullptr) : GameMode(game, false), path(path) {}
-	virtual void update();
-};

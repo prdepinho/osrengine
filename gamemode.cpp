@@ -12,13 +12,15 @@ void GameMode::input(int ch) {
 		game->set_action(new EchoAction());
 		game->set_mode(new SelectActionTargetMode(game));
 		break;
+	case 'a':
+		Log::write("Attack");
+		game->set_action(new AttackAction());
+		game->set_mode(new AttackSelectMode(game));
+		break;
 	case 'm':
 		Log::write("Move");
 		game->set_mode(new MovementSelectMode(game));
 		break;
-	case 'a':
-		Log::write("Attack");
-		game->set_mode(new AttackSelectMode(game));
 	case '0':
 		Log::write("Game Mode");
 		game->set_mode(new GameMode(game));
@@ -59,7 +61,7 @@ void GameMode::draw() {
 
 	// draw log
 	{
-		int y = screen_height - 2;
+		int y = screen_height - 3;
 		int x = 1;
 		for (std::string &line : Log::get_lines(3)) {
 			mvprintw(y++, x, line.c_str());
@@ -119,7 +121,6 @@ void SelectActionTargetMode::input(int ch) {
 	switch(ch) {
 		case '\r':
 		case '\n':
-			Log::write("Action");
 			game->act();
 			game->set_mode(new FreeMoveMode(game));
 			break;
@@ -165,13 +166,9 @@ void AttackSelectMode::input(int ch) {
 	switch(ch) {
 		case '\r':
 		case '\n':
-			AStar::Path path = game->search_path();
-			game->set_mode(new AttackEffectMode(path, game));
+			game->act();
+			game->set_mode(new FreeMoveMode(game));
 			break;
 	}
-}
-
-void AttackEffectMode::update() {
-
 }
 

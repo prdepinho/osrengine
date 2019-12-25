@@ -2,10 +2,12 @@
 
 #include <vector>
 #include <tuple>
+#include <string>
 
 class Tile;
 
 struct Character {
+	std::string name;
 	int abl_str;
 	int abl_dex;
 	int abl_con;
@@ -86,6 +88,7 @@ public:
 	size_t get_width() const { return width; }
 	size_t get_height() const { return height; }
 	std::vector<Miniature*> get_minies(int x, int y);
+	std::vector<Miniature*> get_minies(Coordinates coords);
 	std::vector<Miniature*> get_minies() { return miniatures; }
 	bool put_mini(Miniature &mini, int x, int y);
 	void take_mini(Miniature &mini);

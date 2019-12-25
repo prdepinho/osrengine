@@ -16,10 +16,11 @@ public:
 
 class EchoAction : public Action {
 public:
-	virtual void effect(Terrain &terrain, Miniature &actor, Coordinates target) {
-		std::stringstream ss;
-		ss << "Actor: " << actor.get_x() << ", " << actor.get_y() << "; ";
-		ss << "Target: " << target.x << ", " << target.y << ".";
-		Log::write(ss.str());
-	}
+	virtual void effect(Terrain &terrain, Miniature &actor, Coordinates target);
+};
+
+
+class AttackAction : public Action {
+public:
+	virtual void effect(Terrain &terrain, Miniature &actor, Coordinates target);
 };

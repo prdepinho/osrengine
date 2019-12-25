@@ -1,8 +1,34 @@
 #include "rules.h"
 #include <algorithm>
 
+std::string get_damage_type_name(DamageType damage_type) {
+	switch(damage_type) {
+		case DamageType::Acid: return "Acid";
+		case DamageType::Bludgeoning: return "Bludgeoning";
+		case DamageType::Cold: return "Cold";
+		case DamageType::Fire: return "Fire";
+		case DamageType::Force: return "Force";
+		case DamageType::Lightning: return "Lightning";
+		case DamageType::Necrotic: return "Necrotic";
+		case DamageType::Piercing: return "Piercing";
+		case DamageType::Poison: return "Poison";
+		case DamageType::Psionic: return "Psionic";
+		case DamageType::Radiant: return "Radiant";
+		case DamageType::Slashing: return "Slashing";
+		case DamageType::Thunder: return "Thunder";
+	}
+}
+
 inline int ability_modifier(int ability) {
 	return std::floor((ability - 10) / 2);
+}
+
+bool AttackContext::is_in_range() {
+	return true;
+}
+
+bool AttackContext::is_in_long_range() {
+	return false;
 }
 
 bool AttackContext::attack_has_advantage() {
@@ -31,19 +57,19 @@ int AttackContext::roll_test(bool advantage, bool disadvantage) {
 	}
 }
 
-inline bool AttackContext::attack_is_crit(int roll) {
+bool AttackContext::attack_is_crit(int roll) {
 	return roll == 20;
 }
 
-inline bool AttackContext::attack_is_fumble(int roll) {
+bool AttackContext::attack_is_fumble(int roll) {
 	return roll == 1;
 }
 
-int AttackContext::add_attack_bonuses(int attack_roll) {
+int AttackContext::get_attack_bonuses() {
 	int proficiency_bonus = attacker->get_character().prof_bonus;
 	int ability_bonus = ability_modifier(attacker->get_character().abl_str);
 	int weapon_bonus = attack->attack_bonus;
-	return attack_roll + proficiency_bonus + ability_bonus + weapon_bonus;
+	return proficiency_bonus + ability_bonus + weapon_bonus;
 }
 
 bool AttackContext::attack_hit(int attack_roll) {
@@ -62,10 +88,10 @@ int AttackContext::roll_damage(bool crit) {
 	return damage_rolls[0];
 }
 
-int AttackContext::add_damage_bonuses(int damage_roll) {
+int AttackContext::get_damage_bonuses() {
 	int ability_bonus = ability_modifier(attacker->get_character().abl_str);
 	int weapon_bonus = attack->damage.bonus_damage;
-	return damage_roll + ability_bonus + weapon_bonus;
+	return ability_bonus + weapon_bonus;
 }
 
 void AttackContext::deal_damage(int damage) {

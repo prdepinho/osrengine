@@ -59,6 +59,7 @@ void Game::init() {
 
 	terrain = Terrain(width, height);
 	player = Miniature(Size::Medium, Character {
+		"Player",
 		10, 10, 10, 10, 10, 10,  // str, dev, con, int, wis, cha
 		10, 10, 10, 30, 2, 0     // ac, max_hp, cur_hp, speed, prof_bonus, initiative
 	});
@@ -66,6 +67,7 @@ void Game::init() {
 	
 	{
 		Miniature npc(Size::Medium, Character {
+				"NPC",
 				10, 10, 10, 10, 10, 10,
 				10, 10, 10, 30, 2, 0
 				});
@@ -139,4 +141,11 @@ std::stack<AStar::Direction> Game::search_path() {
 		   	AStar::Vector2i(player.get_x(), player.get_y()),
 		   	AStar::Vector2i(cursor.x, cursor.y));
 	return path;
+}
+
+void Game::attack(Miniature *attacker, Miniature *target, Attack *attack) {
+	Log::write("Game::attack");
+	AttackContext context(attacker, target, &terrain, attack);
+	if (context.is_in_range()) {
+	}
 }

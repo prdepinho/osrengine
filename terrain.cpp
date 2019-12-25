@@ -50,6 +50,10 @@ std::vector<Miniature*> Terrain::get_minies(int x, int y) {
 	return minies;
 }
 
+std::vector<Miniature*> Terrain::get_minies(Coordinates coords) {
+	return get_minies(coords.x, coords.y);
+}
+
 bool Terrain::put_mini(Miniature &mini, int x, int y) {
 	if (fits_mini(mini, x, y)) {
 		mini.set_coords(x, y);

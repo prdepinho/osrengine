@@ -45,6 +45,7 @@ public:
 	void set_action(Action *action);
 	void act();
 	std::stack<AStar::Direction> search_path();
+	void attack(Miniature *attacker, Miniature *target, Attack *attack);
 	Terrain terrain;
 	Miniature player;
 	std::vector<Miniature> npcs;
